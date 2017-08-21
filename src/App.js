@@ -21,11 +21,23 @@ class BooksApp extends React.Component {
       );
   }
 
+  moveBookToShelf(event) {
+   let bookId=event.bookId;
+   let newShelf=event.newShelf;
+   let index = this.state.books.findIndex((element) => {
+    return element.id===bookId
+   });
+   if(index!==-1) {
+     this.setState((prevState)=> prevState.books[index].shelf=newShelf);
+   }
+
+  }
+
   render() {
     return (
       <div className="app">
         <SearchBooks showSearchPage={this.state.showSearchPage} />
-        <MyReads shelves={this.state.shelves} books={this.state.books} />
+        <MyReads shelves={this.state.shelves} books={this.state.books} onMoveToShelf={(e)=>this.moveBookToShelf(e)} />
       </div>
     )
   }

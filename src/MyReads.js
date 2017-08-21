@@ -3,7 +3,6 @@ import Book from './Book';
 
 class MyReads extends React.Component {
     render() {
-
         return (
             <div className="list-books">
                 <div className="list-books-title">
@@ -21,15 +20,15 @@ class MyReads extends React.Component {
                                                 this.props.books.filter((book) => {
                                                     return book.shelf === shelf.name;
                                                 })
-                                                    .map((book) => { 
-                                                        return (<li key={book.id}><Book book={book} /></li>) 
-                                                        })
+                                                    .map((book) => 
+                                                       { return <li key={book.id}><Book book={book} onMoveToShelf={this.props.onMoveToShelf}/></li>},
+                                                        this)
                                             }
                                         </ol>
                                     </div>
                                 </div>
                             );
-                        })}
+                        },this)}
                     </div>
                 </div>
             </div>
