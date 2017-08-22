@@ -1,5 +1,6 @@
 import React from 'react';
 import Book from './Book';
+import {Link} from 'react-router-dom';
 
 class MyReads extends React.Component {
     render() {
@@ -30,8 +31,11 @@ class MyReads extends React.Component {
                             );
                         },this)}
                     </div>
-                </div>
-            </div>
+                </div>   
+             <div className="open-search">
+            <Link to='/search'>Add a book</Link>
+           </div>
+           </div>
         )
     }
 }

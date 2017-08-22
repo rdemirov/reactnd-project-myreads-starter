@@ -1,6 +1,7 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import MyReads from './MyReads';
+import { Switch, Route } from 'react-router-dom'
 import SearchBooks from './SearchBooks';
 import './App.css'
 
@@ -22,23 +23,28 @@ class BooksApp extends React.Component {
   }
 
   moveBookToShelf(event) {
-   let bookId=event.bookId;
-   let newShelf=event.newShelf;
-   let index = this.state.books.findIndex((element) => {
-    return element.id===bookId
-   });
-   if(index!==-1) {
-     this.setState((prevState)=> prevState.books[index].shelf=newShelf);
-   }
+    let bookId = event.bookId;
+    let newShelf = event.newShelf;
+    let index = this.state.books.findIndex((element) => {
+      return element.id === bookId
+    });
+    if (index !== -1) {
+      this.setState((prevState) => prevState.books[index].shelf = newShelf);
+    }
 
   }
 
   render() {
     return (
-      <div className="app">
-        <SearchBooks showSearchPage={this.state.showSearchPage} />
-        <MyReads shelves={this.state.shelves} books={this.state.books} onMoveToShelf={(e)=>this.moveBookToShelf(e)} />
-      </div>
+      <Switch>
+        <Route exact path="/"
+          render={props => {
+            return (<div className="app">
+              <MyReads shelves={this.state.shelves} books={this.state.books} onMoveToShelf={(e) => this.moveBookToShelf(e)} />
+            </div>)
+          }} />
+        <Route path="/search" component={SearchBooks} />
+      </Switch>
     )
   }
 }
