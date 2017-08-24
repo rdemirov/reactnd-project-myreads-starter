@@ -68,12 +68,20 @@ class BooksApp extends React.Component {
                 shelves={this.state.shelves}
                 books={this.state.books}
                 onSelectChange={this.moveBookToShelf}
-                onSearchBooks={this.onSearchBooks}
-                searchQuery={this.state.searchQuery}
               />
             </div>)
           }} />
-        <Route path="/search" component={SearchBooks} />
+        <Route path="/search"
+          render={props => {
+            return (
+              <SearchBooks
+                {...props}
+                onSearchBooks={this.onSearchBooks}
+                searchQuery={this.state.searchQuery}
+                searchResults={this.state.searchResults}
+              />
+            )
+          }} />
       </Switch>
     )
   }
