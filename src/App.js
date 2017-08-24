@@ -7,7 +7,6 @@ import './App.css'
 
 class BooksApp extends React.Component {
   state = {
-    showSearchPage: false,
     shelves: [
       { title: 'Currently Reading', name: 'currentlyReading' },
       { title: 'Read', name: 'read' },
@@ -28,16 +27,23 @@ class BooksApp extends React.Component {
       );
   }
 
-  moveBookToShelf(event) {
-    let bookId = event.bookId;
-    let newShelf = event.newShelf;
-    let index = this.state.books.findIndex((element) => {
-      return element.id === bookId
-    });
-    if (index !== -1) {
-      this.setState((prevState) => prevState.books[index].shelf = newShelf);
-    }
+  moveBookToShelf(bookData) {
+    let book = bookData.book;
+    let bookIndex;
+    let newShelf = bookData.newShelf;
+  
+    BooksAPI.update(book,newShelf)
+    .then((result)=>{
+      this.setState((state)=>{
+        bookIndex=state.books.findIndex((element)=>{
+          return element.id===book.id;
+        });
+        if(bookIndex!==-1) state.books[bookIndex]['shelf']=newShelf;
+        else state.books.push(book);
+        return state;
+      })
 
+    });
   }
 
   render() {
