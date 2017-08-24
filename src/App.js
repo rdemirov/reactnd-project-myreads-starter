@@ -15,6 +15,12 @@ class BooksApp extends React.Component {
     ],
     books: []
   }
+
+  constructor() {
+    super();
+    this.moveBookToShelf = this.moveBookToShelf.bind(this);
+  }
+
   componentDidMount() {
     BooksAPI.getAll()
       .then((books) =>
@@ -40,7 +46,7 @@ class BooksApp extends React.Component {
         <Route exact path="/"
           render={props => {
             return (<div className="app">
-              <MyReads shelves={this.state.shelves} books={this.state.books} onMoveToShelf={(e) => this.moveBookToShelf(e)} />
+              <MyReads shelves={this.state.shelves} books={this.state.books} onMoveToShelf={this.moveBookToShelf} />
             </div>)
           }} />
         <Route path="/search" component={SearchBooks} />
