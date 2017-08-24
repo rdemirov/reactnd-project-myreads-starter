@@ -79,6 +79,7 @@ class BooksApp extends React.Component {
                 onSearchBooks={this.onSearchBooks}
                 searchQuery={this.state.searchQuery}
                 searchResults={this.state.searchResults}
+                onSelectChange={this.moveBookToShelf}
               />
             )
           }} />
