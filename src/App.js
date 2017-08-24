@@ -40,7 +40,10 @@ class BooksApp extends React.Component {
             return element.id === book.id;
           });
           if (bookIndex !== -1) state.books[bookIndex]['shelf'] = newShelf;
-          else state.books.push(book);
+          else {
+            book.shelf=newShelf;
+            state.books.push(book);
+          }
           return state;
         })
       });
