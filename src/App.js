@@ -13,11 +13,7 @@ class BooksApp extends React.Component {
       { title: 'Want To Read', name: 'wantToRead' }
     ],
     books: [],
-    searchResults: [],
-    searchQuery: {
-      query: '',
-      maxResults: 0
-    }
+    searchResults: []
 
   }
 
@@ -77,7 +73,6 @@ class BooksApp extends React.Component {
               <SearchBooks
                 {...props}
                 onSearchBooks={this.onSearchBooks}
-                searchQuery={this.state.searchQuery}
                 searchResults={this.state.searchResults}
                 onSelectChange={this.moveBookToShelf}
               />
