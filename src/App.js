@@ -28,10 +28,8 @@ class BooksApp extends React.Component {
   }
 
   moveBookToShelf(bookData) {
-    let book = bookData.book;
-    let bookIndex;
-    let newShelf = bookData.newShelf;
-  
+   let {book,newShelf} = bookData;
+   let bookIndex;
     BooksAPI.update(book,newShelf)
     .then((result)=>{
       this.setState((state)=>{
