@@ -21,7 +21,7 @@ class MyReads extends React.Component {
                                                 this.props.books.filter((book) => {
                                                     return book.shelf === shelf.name;
                                                 }).map((book) =>
-                                                { return <li key={book.id}><Book book={book} onMoveToShelf={this.props.onMoveToShelf} /></li> },
+                                                { return <li key={book.id}><Book book={book} onSelectChange={this.props.onSelectChange} /></li> },
                                                     this)
                                             }
                                         </ol>

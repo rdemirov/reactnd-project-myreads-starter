@@ -12,12 +12,19 @@ class BooksApp extends React.Component {
       { title: 'Read', name: 'read' },
       { title: 'Want To Read', name: 'wantToRead' }
     ],
-    books: []
+    books: [],
+    searchResults: [],
+    searchQuery: {
+      query: '',
+      maxResults: 0
+    }
+
   }
 
   constructor() {
     super();
     this.moveBookToShelf = this.moveBookToShelf.bind(this);
+    this.onSearchBooks = this.onSearchBooks.bind(this);
   }
 
   componentDidMount() {
@@ -28,20 +35,27 @@ class BooksApp extends React.Component {
   }
 
   moveBookToShelf(bookData) {
-   let {book,newShelf} = bookData;
-   let bookIndex;
-    BooksAPI.update(book,newShelf)
-    .then((result)=>{
-      this.setState((state)=>{
-        bookIndex=state.books.findIndex((element)=>{
-          return element.id===book.id;
-        });
-        if(bookIndex!==-1) state.books[bookIndex]['shelf']=newShelf;
-        else state.books.push(book);
-        return state;
-      })
+    let { book, newShelf } = bookData;
+    let bookIndex;
+    BooksAPI.update(book, newShelf)
+      .then((result) => {
+        this.setState((state) => {
+          bookIndex = state.books.findIndex((element) => {
+            return element.id === book.id;
+          });
+          if (bookIndex !== -1) state.books[bookIndex]['shelf'] = newShelf;
+          else state.books.push(book);
+          return state;
+        })
+      });
+  }
 
-    });
+  onSearchBooks(searchQuery) {
+    let { query, maxResults } = searchQuery;
+    BooksAPI.search(query, maxResults)
+      .then((searchResults) => {
+        this.setState({ searchResults });
+      });
   }
 
   render() {
@@ -50,7 +64,13 @@ class BooksApp extends React.Component {
         <Route exact path="/"
           render={props => {
             return (<div className="app">
-              <MyReads shelves={this.state.shelves} books={this.state.books} onMoveToShelf={this.moveBookToShelf} />
+              <MyReads
+                shelves={this.state.shelves}
+                books={this.state.books}
+                onSelectChange={this.moveBookToShelf}
+                onSearchBooks={this.onSearchBooks}
+                searchQuery={this.state.searchQuery}
+              />
             </div>)
           }} />
         <Route path="/search" component={SearchBooks} />

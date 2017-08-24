@@ -10,7 +10,7 @@ class Book extends React.Component {
                 <select defaultValue={book.shelf} onChange={(event)=>
                   {
                   let newShelf=event.target.value;
-                  this.props.onMoveToShelf({book,newShelf})
+                  this.props.onSelectChange({book,newShelf})
                   }
                   } >
                   <option value="none" disabled>Move to...</option>
