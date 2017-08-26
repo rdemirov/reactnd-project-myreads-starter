@@ -70,7 +70,7 @@ The 3 shelves are displayed on this page ,together with the books belonging to t
 
 ### Search page
 
-Here,the user can search for and add new books to the shelves,or update the shelf of a book.
+Here,the user can search for and add new books to the shelves.
 Books can be searched by using one of the following allowed terms:
  
     * Android
