@@ -1,11 +1,16 @@
 import React from 'react';
 import Book from './Book';
+import PropTypes from 'prop-types';
 import allowedSearchTerms from '../utils/allowedSearchTerms';
 
 class SearchBooks extends React.Component {
-constructor(props) {
-  super(props);
-}
+
+  static PropTypes = {
+    searchResults: PropTypes.array.isRequired,
+    onSearchBooks: PropTypes.object.isRequired,
+    onSelectChange: PropTypes.func.isRequired,
+    onSearchPageLoad:PropTypes.func.isRequired
+  }
 
 componentDidMount() {
   this.props.onSearchPageLoad();

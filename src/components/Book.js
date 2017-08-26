@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 class Book extends React.Component {
+
+  static PropTypes = {
+    book: PropTypes.object.isRequired,
+    onSelectChange: PropTypes.func.isRequired
+
+  }
+  
   render() {
     let book = this.props.book;
     let bookCoverStyle = { width: 128, height: 193 };
@@ -27,12 +34,6 @@ class Book extends React.Component {
         <div className="book-authors">{(book.authors) ? book.authors.join(',') : ''}</div>
       </div>
     )
-  }
-
-  static propTypes = {
-    book: PropTypes.object.isRequired,
-    onSelectChange: PropTypes.func.isRequired
-
   }
 }
 
