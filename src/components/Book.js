@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 class Book extends React.Component {
   render() {
     let book = this.props.book;
