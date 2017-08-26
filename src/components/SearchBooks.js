@@ -1,7 +1,6 @@
 import React from 'react';
 import Book from './Book';
 import PropTypes from 'prop-types';
-import allowedSearchTerms from '../utils/allowedSearchTerms';
 
 class SearchBooks extends React.Component {
 
@@ -24,12 +23,9 @@ componentDidMount() {
           <a className="close-search" onClick={() => this.props.history.push('/')}>Close</a>
           <div className="search-books-input-wrapper" width="80%">
             <input type="text" onChange={(e) => {
-              let allowedSearch;
-              if (allowedSearchTerms.indexOf(e.target.value) !== -1) allowedSearch = true;
               this.props.onSearchBooks({
                 query: e.target.value,
-                maxResults: 20,
-                allowedSearch
+                maxResults: 20
               })
             }} placeholder="Search by title or author" />
           </div>
