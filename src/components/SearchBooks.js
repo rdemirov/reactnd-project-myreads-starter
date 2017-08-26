@@ -8,15 +8,20 @@ class SearchBooks extends React.Component {
     searchResults: PropTypes.array.isRequired,
     onSearchBooks: PropTypes.object.isRequired,
     onSelectChange: PropTypes.func.isRequired,
-    onSearchPageLoad:PropTypes.func.isRequired
+    onSearchPageLoad: PropTypes.func.isRequired
   }
 
-componentDidMount() {
-  this.props.onSearchPageLoad();
-}
+  componentDidMount() {
+    this.props.onSearchPageLoad();
+  }
 
   render() {
-    let results = this.props.searchResults.map((book, index) => <li key={book.id}><Book book={book} onSelectChange={this.props.onSelectChange} /> </li>);
+    let results;
+    if (this.props.searchResults.error) results = <p>{this.props.searchResults.error}</p>
+    else results = this.props.searchResults.map((book, index) =>
+      <li key={book.id}><Book book={book} onSelectChange={this.props.onSelectChange} /> </li>
+    );
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
