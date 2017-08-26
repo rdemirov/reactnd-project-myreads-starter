@@ -50,11 +50,13 @@ class BooksApp extends React.Component {
   }
 
   onSearchBooks(searchQuery) {
-    let { query, maxResults } = searchQuery;
+    let { query, maxResults,allowedSearch } = searchQuery;
+    if(allowedSearch) {
     BooksAPI.search(query, maxResults)
       .then((searchResults) => {
         this.setState({ searchResults });
       });
+    } else  this.setState({ searchResults:[] });
   }
 
   render() {
