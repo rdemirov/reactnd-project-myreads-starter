@@ -45,6 +45,12 @@ class BooksApp extends React.Component {
             book.shelf = newShelf;
             state.books.push(book);
           }
+          if (state.searchResults && !state.searchResults.error && state.searchResults.length > 0) {
+            bookIndex = state.searchResults.findIndex((element) => {
+              return element.id === book.id;
+            });
+            if (bookIndex !== -1) state.searchResults[bookIndex]['shelf'] = newShelf;
+          }
           return state;
         })
       });
@@ -60,7 +66,17 @@ class BooksApp extends React.Component {
             if (searchResults.error === 'empty query') results = { error: 'No matching books found' }
             else results = { error: searchResults.error }
           }
-          else results = searchResults;
+          else {
+            let book;
+            searchResults = searchResults.map((element) => {
+              book = this.state.books.find((object) => object.id === element.id);
+              if (book) {
+                element.shelf = book.shelf
+              }
+              return element;
+            }, this);
+            results = searchResults;
+          }
           this.setState({ searchResults: results });
         });
     } else this.setState({ searchResults: [] });
