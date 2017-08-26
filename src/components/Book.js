@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 class Book extends React.Component {
   render() {
     let book = this.props.book;
@@ -18,7 +19,7 @@ class Book extends React.Component {
               <option value="currentlyReading" >Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
-             ({book.shelf && book.shelf!=='none'&&(<option value="none" >None</option>)})
+              ({book.shelf && book.shelf !== 'none' && (<option value="none" >None</option>)})
             </select>
           </div>
         </div>
@@ -26,6 +27,12 @@ class Book extends React.Component {
         <div className="book-authors">{(book.authors) ? book.authors.join(',') : ''}</div>
       </div>
     )
+  }
+
+  static propTypes = {
+    book: PropTypes.object.isRequired,
+    onSelectChange: PropTypes.func.isRequired
+
   }
 }
 

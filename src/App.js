@@ -21,6 +21,7 @@ class BooksApp extends React.Component {
     super();
     this.moveBookToShelf = this.moveBookToShelf.bind(this);
     this.onSearchBooks = this.onSearchBooks.bind(this);
+    this.onSearchPageLoad = this.onSearchPageLoad.bind(this);
   }
 
   componentDidMount() {
@@ -41,7 +42,7 @@ class BooksApp extends React.Component {
           });
           if (bookIndex !== -1) state.books[bookIndex]['shelf'] = newShelf;
           else {
-            book.shelf=newShelf;
+            book.shelf = newShelf;
             state.books.push(book);
           }
           return state;
@@ -50,13 +51,17 @@ class BooksApp extends React.Component {
   }
 
   onSearchBooks(searchQuery) {
-    let { query, maxResults,allowedSearch } = searchQuery;
-    if(allowedSearch) {
-    BooksAPI.search(query, maxResults)
-      .then((searchResults) => {
-        this.setState({ searchResults });
-      });
-    } else  this.setState({ searchResults:[] });
+    let { query, maxResults, allowedSearch } = searchQuery;
+    if (allowedSearch) {
+      BooksAPI.search(query, maxResults)
+        .then((searchResults) => {
+          this.setState({ searchResults });
+        });
+    } else this.setState({ searchResults: [] });
+  }
+
+  onSearchPageLoad() {
+    this.setState({ searchResults: [] });
   }
 
   render() {
@@ -80,6 +85,7 @@ class BooksApp extends React.Component {
                 onSearchBooks={this.onSearchBooks}
                 searchResults={this.state.searchResults}
                 onSelectChange={this.moveBookToShelf}
+                onSearchPageLoad={this.onSearchPageLoad}
               />
             )
           }} />

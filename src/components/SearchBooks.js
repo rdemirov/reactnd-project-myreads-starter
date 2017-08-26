@@ -3,6 +3,13 @@ import Book from './Book';
 import allowedSearchTerms from '../utils/allowedSearchTerms';
 
 class SearchBooks extends React.Component {
+constructor(props) {
+  super(props);
+}
+
+componentDidMount() {
+  this.props.onSearchPageLoad();
+}
 
   render() {
     let results = this.props.searchResults.map((book, index) => <li key={book.id}><Book book={book} onSelectChange={this.props.onSelectChange} /> </li>);
