@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 class Book extends React.Component {
 
-  static PropTypes = {
+  static propTypes = {
     book: PropTypes.object.isRequired,
     onSelectChange: PropTypes.func.isRequired
 

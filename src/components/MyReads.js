@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 class MyReads extends React.Component {
 
-    static PropTypes = {
+    static propTypes = {
         book: PropTypes.object.isRequired,
         shelves: PropTypes.arrayOf(PropTypes.string).isRequired,
         onSelectChange: PropTypes.func.isRequired

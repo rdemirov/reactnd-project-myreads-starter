@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 class SearchBooks extends React.Component {
 
-  static PropTypes = {
-    searchResults: PropTypes.array.isRequired,
+  static propTypes = {
+    searchResults: propTypes.array.isRequired,
     onSearchBooks: PropTypes.object.isRequired,
     onSelectChange: PropTypes.func.isRequired,
     onSearchPageLoad: PropTypes.func.isRequired
