@@ -7,7 +7,6 @@ The app is built using the provided starter template.It includes the following f
 
 ```
 +--public/    
- |-- index.html - DO NOT MODIFY
  |-- favicon.ico - React Icon, You may change if you wish.
 +-- src/
  +-- icons/ - Helpful images for your app. Use at your discretion.
@@ -15,19 +14,19 @@ The app is built using the provided starter template.It includes the following f
   |-- arrow-back.svg
   |-- arrow-drop-down.svg
  +-- utils
-  |-- allowedSearchTerms.js - Exports an array used to define the terms allowed in the search for books
   |-- BooksAPI.js - A JavaScript API for the provided Udacity backend. 
  +-- components
-  |-- Book.js - Component used for rendering a given book together with the dropdown for shelf selection
-  |-- MyReads.js - Main page of the app.Renders the 3 shelves with the books belonging to them
-  |-- SearchBooks.js - Renders the search page and the search results.Allows adding a book to one of the shelves
- |-- App.js - This is the root of your app. Contains static HTML right now.
+  |-- Book.jsx - Component used for rendering a given book together with the dropdown for shelf selection
+  |-- MyReads.jsx - Main page of the app.Renders the 3 shelves with the books belonging to them
+  |-- SearchBooks.jsx - Renders the search page and the search results.Allows adding a book to one of the shelves
+ |-- App.jsx - This is the root of your app.
  |-- App.css - Styles for your app. Feel free to customize this as you desire.
- |-- App.test.js - Used for testing. Provided with Create React App. 
- |-- index.js - You should not need to modify this file. It is used for DOM rendering only.
+ |-- App.test.jsx - Used for testing.
+ |-- index.jsx - You should not need to modify this file. It is used for DOM rendering only.
  |-- index.css - Global styles. You probably won't need to change anything here.
 |-- .gitignore 
 |-- CONTRIBUTING.MD - Information about contributing to this repo. 
+|-- index.html - The Vite HTML entry point (at the project root).
 TL;DR - Fork and clone your own version of this to use it.
 |-- README.MD - This README file.
 |-- SEARCH_TERMS.md - The whitelisted short collection of available search terms 
@@ -35,6 +34,7 @@ for you to use with your app.
 |-- package.json - npm package manager file. It's unlikely that you'll need to modify this.
 |-- package-lock.json - npm package manager file.COntains description of the dependencies of the modules used in the project.
 ```
+
 
 ## Installation 
 
@@ -56,8 +56,8 @@ npm start
 The pages of the application are available at the following URLs:
 
 ```
-http://localhost:3000/ - Main page 
-http://localhost:3000/search - Search page 
+http://localhost:5173/ - Main page 
+http://localhost:5173/search - Search page 
 
 ```
 
